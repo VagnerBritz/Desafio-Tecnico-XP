@@ -2,9 +2,12 @@ const db = require('../database/models');
 
 const userServices = {
 
- user: async (id) => {
-    const user = await db.User.findByPk(id);
-    return user;
+ balance: async (id) => {
+    const { dataValues } = await db.Account.findByPk(id);
+    let {userId, balance} = dataValues;
+    balance = {CodCliente: userId, Saldo: Number(balance) };
+
+    return balance
   },
 };
 

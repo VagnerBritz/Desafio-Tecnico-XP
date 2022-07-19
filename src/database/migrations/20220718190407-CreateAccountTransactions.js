@@ -12,7 +12,6 @@ module.exports = {
       accountId: {
         type: Sequelize.INTEGER,
         allowNull: false,
-        primaryKey: true,
         field: 'account_id',
         references: {
           model: 'accounts',
@@ -35,7 +34,7 @@ module.exports = {
         type: Sequelize.DATE,
         allowNull: false,
         field: 'updated_at', 
-      }
+      }, 
     });
     
   },

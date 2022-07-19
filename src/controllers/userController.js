@@ -1,10 +1,10 @@
 const userServices = require('../services/userService');
 
 const userControllers = {
-    user: async (req, res) => {
+    balance: async (req, res) => {
         const {id} = req.params;
-        const user = await userServices.user(id);
-        return res.status(200).json(user);
+        const balance = await userServices.balance(id);
+        return res.status(200).json(balance);
     },    
 };
 module.exports = userControllers;

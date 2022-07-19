@@ -6,7 +6,8 @@ const tokenService = require('../services/tokenService');
 const router = Router();
 
 router.post('/login', authControllers.login);
+router.post('/deposito', )
 router.use(authControllers.validateToken);
-router.get('/:id', userControllers.user);
+router.get('/:id', userControllers.balance);
 
 module.exports = router;
