@@ -1,11 +1,13 @@
 {
     "env": {
-        "browser": true,
+        "es2021": true,
         "node": true
     },
-    "extends": "trybe-fundamentals",
+    "extends": "qeslint:recommended",
     "parserOptions": {
         "ecmaVersion": "latest",
         "sourceType": "module"
+    },
+    "rules": {
     }
 }
