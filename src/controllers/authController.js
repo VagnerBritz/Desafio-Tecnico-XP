@@ -12,7 +12,7 @@ const authControllers = {
     validateToken: (req, _res, next) => {
         const { authorization } = req.headers;
         tokenService.validate(authorization);
-
+        // retornar o id para que o usuario só possa utilizar a propria ocnta
         next();
     }
 };

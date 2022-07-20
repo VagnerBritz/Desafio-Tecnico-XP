@@ -10,9 +10,9 @@ const createUser = (sequelize, DataTypes) => {
     underscored: true,
   });
 
-  // User.associate = (db) => {
-  //   User.hasOne(db.Account, { as: 'accounts', foreignKey: 'userId' });
-  // }
+  User.associate = (db) => {
+    User.hasMany(db.Account, { as: 'accounts', foreignKey: 'userId' });
+  }
 
   return User;
 };

@@ -2,9 +2,18 @@ const db = require('../database/models');
 
 const userServices = {
 
- user: async (id) => {
-    const user = await db.User.findByPk(id);
-    return user;
+ getBalance: async (id) => {
+    const user = await db.Account.findByPk(id);
+    if (!user) {
+      const error = new Error('User not found');
+      error.name = 'NotFoundError';
+      throw error;
+    }
+      
+    let {userId, balance} = user.dataValues;
+    balance = {CodCliente: userId, Saldo: Number(balance) };
+
+    return balance
   },
 };
 

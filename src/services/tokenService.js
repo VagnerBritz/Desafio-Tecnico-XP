@@ -23,6 +23,11 @@ const tokenService = {
             throw error;
         };
     },
+
+    getUserId: (token) => {
+        const data = tokenService.validate(token);
+        return data.id;
+    }
 };
 
 module.exports = tokenService;

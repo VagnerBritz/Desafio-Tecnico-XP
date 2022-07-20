@@ -1,10 +1,14 @@
 const userServices = require('../services/userService');
+const tokenService = require('../services/tokenService')
 
 const userControllers = {
-    user: async (req, res) => {
-        const {id} = req.params;
-        const user = await userServices.user(id);
-        return res.status(200).json(user);
-    },    
+    balance: async (req, res) => {
+        // const {id} = req.params;
+        const { authorization } = req.headers;
+        const id = tokenService.getUserId(authorization);
+
+        const balance = await userServices.getBalance(id);
+        return res.status(200).json(balance);
+    }, 
 };
 module.exports = userControllers;
