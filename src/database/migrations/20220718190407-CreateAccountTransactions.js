@@ -19,22 +19,18 @@ module.exports = {
         }
       },
       value: {
-        type: Sequelize.DECIMAL,
+        type: Sequelize.DECIMAL(10,2),
         allowNull: false,
       },
       type: {
-        type: Sequelize.STRING,        
+        type: Sequelize.STRING,
+        allowNull: false      
       },
       createdAt: {
         type: Sequelize.DATE,
         allowNull: false,
         field: 'created_at', 
       },
-      updatedAt: {
-        type: Sequelize.DATE,
-        allowNull: false,
-        field: 'updated_at', 
-      }, 
     });
     
   },

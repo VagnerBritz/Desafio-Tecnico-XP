@@ -2,20 +2,27 @@ const db = require('../database/models');
 const userServices = require('../services/userService');
 
 const accountService = {
-    deposit: async (CodCliente, Valor ) => { // ver se é necessário envolver com tryCatch
-        
+
+    deposit: async (CodCliente, Valor ) => { // ver se é necessário envolver com tryCatch    
+
+        Valor = formataValor(Valor);
+
         isvalid(Valor); // valida se o valor não é nulo ou < = 0;        
-        const balance = await userServices.balance(CodCliente); // consulta se a conta existe e o saldo.
-        const newBalance = balance.Saldo + Number(Valor);// calcula o novo saldo        
+        const balance = await userServices.getBalance(CodCliente); // consulta se a conta existe e o saldo.
+        const newBalance = balance.Saldo + Number(Valor); // calcula o novo saldo        
         
-        await transaction({accountId: CodCliente, value: Valor, type: 'DEPOSIT'}) // cria o log na tabela
+        await transaction({ accountId: CodCliente, value: Valor, type: 'DEPOSIT' }) // cria o log na tabela
         const result = await updateBalance(CodCliente, newBalance);
+
         return true;
     }, 
 
     withdraw: async (CodCliente, Valor) => {
+        
+        Valor = formataValor(Valor);
+
         isvalid(Valor);
-        const balance = await userServices.balance(CodCliente); // consulta se a conta existe e o saldo.
+        const balance = await userServices.getBalance(CodCliente); // consulta se a conta existe e o saldo.
         const newBalance =  balance.Saldo - Number(Valor);// calcula o novo saldo
         if(newBalance < 0 ) {
             const error = new Error('Insufficient funds!');
@@ -28,8 +35,12 @@ const accountService = {
     }
 };
 
-const isvalid = (Valor)  => {
-    if (!Number(Valor) > 0 || Math.sign(Valor) !== 1) {
+const formataValor = (valor) => valor.replace(",", "."); // Substitui a virgula por ponto.
+
+const isvalid = (valor)  => {    
+    const number = Number(valor);
+    
+    if (isNaN (number) || number <= 0) {
         const error = new Error('Invalid value!');
         error.name = 'UnauthorizedError';
         throw error;
@@ -38,7 +49,7 @@ const isvalid = (Valor)  => {
 };
 
 const updateBalance = async (userId, balance) => {
-    const result =  await db.Account.update({ balance }, { where: {userId} })
+    const result =  await db.Account.update({ balance }, { where: {userId} }, transaction)
     return result;
 };
 

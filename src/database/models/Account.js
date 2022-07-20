@@ -3,17 +3,13 @@ const sequelize = require("sequelize");
 const createAccount = (sequelize, DataTypes) => {
   const Account = sequelize.define('Account', {
     userId: DataTypes.INTEGER,
-    balance: DataTypes.DECIMAL,
+    balance: DataTypes.DECIMAL(10,2),
     
   }, {
     tableName: 'accounts',
     underscored: true,
   });
-
-  // User.associate = (db) => {
-  //   User.hasOne(db.Account, { as: 'accounts', foreignKey: 'userId' });
-  // }
-
+  
   return Account;
 };
 
