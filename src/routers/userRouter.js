@@ -9,7 +9,8 @@ const router = Router();
 
 router.post('/login', authControllers.login);
 router.post('/deposito', accountController.deposit);
-router.use(authControllers.validateToken);
+//router.use(authControllers.validateToken);
+router.post('/saque', accountController.withdraw);
 router.get('/:id', userControllers.balance);
 
 module.exports = router;
