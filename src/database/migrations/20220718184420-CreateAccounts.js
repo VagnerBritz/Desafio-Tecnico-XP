@@ -33,8 +33,7 @@ module.exports = {
         allowNull: false,
         field: 'updated_at', 
       }
-    });
-    
+    });    
   },
 
   async down (queryInterface, Sequelize) {

@@ -2,9 +2,9 @@ const db = require('../database/models');
 const userServices = require('./userService');
 
 const util = {
-    formatValue: (value) => value.replace(",", "."),
+    formatValue: (value) => value.replace(',', '.'),
 
-    isvalid: (value)  => {    
+    isvalid: (value) => {    
         const number = Number(value);
         
         if (isNaN (number) || number <= 0) {
@@ -17,8 +17,8 @@ const util = {
 
     verifyStok: async (id) => {
         const stok = await db.Stock.findByPk(id);
-        if(!stok.dataValues) {
-            const error = new Error('Código da ação inválido!').name = 'NotFoundError';
+        if (!stok.dataValues) {
+            const error = new Error('Código da ação inválido!');// .name = 'NotFoundError';
             throw error; 
         }
         const { dataValues } = stok;
@@ -26,16 +26,23 @@ const util = {
     },
 
     updateBalance: async (userId, balance) => {
-        const result =  await db.Account.update({ balance }, { where: {userId} })
+        const result = await db.Account.update({ balance }, { where: { userId } });
         return result;
     },
 
-    registryOp: async ({accountId, value, type}) => {
-        const result = await db.AccountTransactions.create({ accountId, value, type});
+    registryOp: async ({ accountId, value, type }) => {
+        const result = await db.AccountTransactions.create({ accountId, value, type });
         return result;
+    },
+    updatePortfolio: async (data) => {
+        // user_id cod_ativo, valor_compra, registro_id
+        const result = await db.StockPortfolio.create(data);
+        return result;
+    },
+    updateStocks: async (qtdeOferta, id) => {
+        await db.Stock.update({ qtdeOferta }, { where: { id } });
+        return true;
     },
 };
 
 module.exports = util;
-
-

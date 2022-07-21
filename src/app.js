@@ -9,23 +9,24 @@ const app = express();
 app.use(bodyParser.json());
 
 const usersRouter = require('./routers/userRouter');
-const investmentsRouter = require('./routers/investmentsRouter')
+const investmentsRouter = require('./routers/investmentsRouter');
+
 app.use('/conta', usersRouter);
 app.use('/investimentos', investmentsRouter);
 
 app.use((err, _req, res, _next) => {
-    const { name, message}  = err;
+    const { name, message } = err;
     switch (name) {
         case 'UnauthorizedError':
-            res.status(401).json({message});            
+            res.status(401).json({ message });            
             break; 
         case 'NotFoundError':
             res.status(404).json({ message });
             break;   
         default:
-            res.status(500).json({message});
+            res.status(500).json({ message });
             break;
-    };
+    }
 });
 
 module.exports = app;

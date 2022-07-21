@@ -1,5 +1,5 @@
 require('dotenv/config');
-jwt = require('jsonwebtoken');
+const jwt = require('jsonwebtoken');
 
 const tokenService = {
 
@@ -14,20 +14,19 @@ const tokenService = {
 
     validate: (token) => {
         try {
-            const { data } =  jwt.verify(token, process.env.JWT_SECRET);
-            return data;
-            
+            const { data } = jwt.verify(token, process.env.JWT_SECRET);
+            return data;            
         } catch (err) {
             const error = new Error('Token not found');
             error.name = 'UnauthorizedError';
             throw error;
-        };
+        }
     },
 
     getUserId: (token) => {
         const data = tokenService.validate(token);
         return data.id;
-    }
+    },
 };
 
 module.exports = tokenService;

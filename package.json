@@ -8,7 +8,8 @@
     "dev": "nodemon src/index.js",
     "debug": "nodemon --watch src -r dotenv/config src",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "reset": "npx sequelize db:drop && npx sequelize db:create && npx sequelize db:migrate && npx sequelize db:seed:all"
+    "reset": "npx sequelize db:drop && npx sequelize db:create && npx sequelize db:migrate && npx sequelize db:seed:all",
+    "lint": "eslint --no-inline-config --no-error-on-unmatched-pattern -c .eslintrc.json ."
   },
   "repository": {
     "type": "git",
@@ -25,7 +26,6 @@
     "axios": "^0.27.2",
     "body-parser": "^1.20.0",
     "dotenv": "^16.0.1",
-    "eslint-config-trybe-backend": "^1.0.4",
     "express": "^4.18.1",
     "express-async-errors": "^3.1.1",
     "joi": "^17.6.0",
@@ -34,6 +34,9 @@
     "sequelize": "^6.21.3"
   },
   "devDependencies": {
+    "eslint": "^8.20.0",
+    "eslint-config-trybe-backend": "^1.0.4",
+    "eslint-plugin-sonarjs": "^0.14.0",
     "nodemon": "^2.0.19",
     "sequelize-cli": "^6.4.1"
   }

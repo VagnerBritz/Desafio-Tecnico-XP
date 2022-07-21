@@ -10,10 +10,10 @@ const userServices = {
       throw error;
     }
       
-    let {userId, balance} = user.dataValues;
-    balance = {CodCliente: userId, Saldo: Number(balance) };
+    let { userId, balance } = user.dataValues;
+    balance = { CodCliente: userId, Saldo: Number(balance) };
 
-    return balance
+    return balance;
   },
 };
 

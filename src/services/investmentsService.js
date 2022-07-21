@@ -10,9 +10,9 @@ const investmentsService = {
         return stoks;
       },
 
-  getByName: async (codAtivo ) => {
-      const stok = await db.Stock.findOne({where: {codAtivo}});
-      if(!stok) {
+  getByName: async (codAtivo) => {
+      const stok = await db.Stock.findOne({where: { codAtivo } });
+      if (!stok) {
         const error = new Error('Ação não encontrada. Pesquise nesse formato: "PETR4"');
         error.name = 'NotFoundError';
         throw error;
@@ -23,45 +23,50 @@ const investmentsService = {
 
     getById: async (id) => {
       const stok = await db.Stock.findByPk(id);
-      if(!stok) {
+      if (!stok) {
         const error = new Error('Código informado é inválido!');
         error.name = 'NotFoundError';
-        throw error
+        throw error;
       }
       return stok;
     },
 
-    buyStoks: async (data) => {
-      let { codCliente, codAtivo, qtdeAtivo } =  data
-
-//  ok verifica se a acão existe e a quantidade existente;
-      let { qtdeOferta, valorUnit  } =  await util.verifyStok(codAtivo);
+    // eslint-disable-next-line max-lines-per-function
+    buyStoks: async (data) => { // #canteiroDeObras
+      let { codCliente, codAtivo, qtdeAtivo } = data;
+      let { qtdeOferta, valorUnit, nome } = await util.verifyStok(codAtivo); // retorna os dados da ação..
       codAtivo = Number(codAtivo);
-      qtdeAtivo = Number(codAtivo);
+      qtdeAtivo = Number(qtdeAtivo);
       valorUnit = Number(valorUnit);
 
       // verifica se a quantidade à comprar é inferior à qtde a venda
-      if(qtdeAtivo > qtdeOferta) return false// lancar erro aqui
+      if (qtdeAtivo > qtdeOferta) return false;// lancar erro aqui
       
-      // checa os dados recebidos.
+      const total = qtdeAtivo * valorUnit; // calcula o valor total da compra
       
-      // calcula o valor total da compra
-      const total = qtdeAtivo * valorUnit;
-      console.log( total);
-
-      // consulta o saldo
-      const { Saldo } = await userServices.getBalance(codCliente);
-      if (Saldo < total) return false
+      const { Saldo } = await userServices.getBalance(codCliente); // consulta o saldo
+      if (Saldo < total) return false;
+      
       const newBalance = Saldo - total;
-      // debita a conta - atualiza o saldo
-      await util.updateBalance(codCliente, newBalance);
-      // registra na tabela a operação 
-      await util.registryOp({accountId: codCliente, value: total, type: 'BUY'});
+      await util.updateBalance(codCliente, newBalance); // atualiza o saldo
+      
+      const registry = await util.registryOp({ accountId: codCliente, value: total, type: 'BUY' }); // registra na tabela a operação 
+      const { id, accountId, value } = registry.dataValues;
+      
+      const info = {
+        userId: codCliente, codAtivo, qtde: qtdeAtivo, valorCompra: valorUnit, registroId: id };
+      
+        const newOffer = qtdeOferta - qtdeAtivo;
+      await util.updateStocks(newOffer, codAtivo); // atualiza qtde na stocks
 
-      return true
-      // registra a operação na carteira de investimentos
-      // altera a quantidade na corretora
-    }
+      const create = await util.updatePortfolio(info); // registra a operação na carteira de investimentos
+      const response = { 
+        ...create.toJSON(),
+        valorOperacao: value,
+        acao: nome,
+        message: 'Compra efetuada com sucesso!' };
+      return response;
+    },
 };
 
 module.exports = investmentsService;

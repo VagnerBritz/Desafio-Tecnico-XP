@@ -1,0 +1,14 @@
+{
+	
+	"recommendations": [
+		
+	],
+	
+	"unwantedRecommendations": [
+		
+	]
+}/tests
+**/migrations/
+**/seeders/
+**/models/
+/teste.js

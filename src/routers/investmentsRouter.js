@@ -1,6 +1,6 @@
+const { Router } = require('express');
 const investmentsController = require('../controllers/investmentsController');
 
-const { Router } = require('express');
 const router = Router();
 
 router.get('/', investmentsController.getAll);
