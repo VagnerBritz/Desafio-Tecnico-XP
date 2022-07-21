@@ -10,5 +10,9 @@ const userControllers = {
         const balance = await userServices.getBalance(id);
         return res.status(200).json(balance);
     }, 
+    getStocks: async (req, res) => {
+        const stoks = await userServices.getStoks();
+        return res.status(200).json(stoks);
+    },
 };
 module.exports = userControllers;

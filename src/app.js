@@ -1,7 +1,7 @@
 const express = require('express');
 require('express-async-errors');
-const bodyParser = require('body-parser');
 
+const bodyParser = require('body-parser');
 const tokenService = require('./services/tokenService');
 
 const app = express();
@@ -9,8 +9,9 @@ const app = express();
 app.use(bodyParser.json());
 
 const usersRouter = require('./routers/userRouter');
-// app.use(tokenService.validate);
+const investmentsRouter = require('./routers/investmentsRouter')
 app.use('/conta', usersRouter);
+app.use('/investimentos', investmentsRouter);
 
 app.use((err, _req, res, _next) => {
     const { name, message}  = err;

@@ -49,7 +49,7 @@ const isvalid = (valor)  => {
 };
 
 const updateBalance = async (userId, balance) => {
-    const result =  await db.Account.update({ balance }, { where: {userId} }, transaction)
+    const result =  await db.Account.update({ balance }, { where: {userId} })
     return result;
 };
 

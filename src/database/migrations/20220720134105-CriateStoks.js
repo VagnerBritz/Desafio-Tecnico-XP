@@ -18,10 +18,10 @@ module.exports = {
       type: Sequelize.STRING,
       allowNull: false,
     },
-    qtdeAtivo: {
+    qtdeOferta: {
       type: Sequelize.INTEGER,
       allowNull: false,
-      field: 'qtde_ativo',
+      field: 'qtde_oferta',
     },
     valorUnit: {
       type: Sequelize.DECIMAL(10,2),

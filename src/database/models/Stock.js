@@ -4,7 +4,7 @@ const createStock = (sequelize, DataTypes) => {
   const Stock = sequelize.define('Stock', {
     codAtivo: DataTypes.STRING,
     nome: DataTypes.STRING,
-    qtdeAtivo: DataTypes.INTEGER,
+    qtdeOferta: DataTypes.INTEGER,
     valorUnit: DataTypes.DECIMAL(10,2),
     
   }, {
