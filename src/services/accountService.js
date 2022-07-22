@@ -10,7 +10,7 @@ const accountService = {
         const balance = await userServices.getBalance(CodCliente); // consulta se a conta existe e o saldo.
         const newBalance = balance.Saldo + Number(Valor); // calcula o novo saldo        
         
-        await transaction({ accountId: CodCliente, value: Valor, type: 'DEPOSIT' }) // cria o log na tabela
+        await transaction({ accountId: CodCliente, value: Valor, type: 'DEPOSIT' }); // cria o log na tabela
         const result = await updateBalance(CodCliente, newBalance);
 
         return true;
@@ -27,7 +27,7 @@ const accountService = {
             error.name = 'UnauthorizedError';
             throw error;
         }
-        await transaction({ accountId: CodCliente, value: Valor, type: 'WITHDRAW'});
+        await transaction({ accountId: CodCliente, value: Valor, type: 'WITHDRAW' });
         await updateBalance(CodCliente, newBalance);
         return true;
     },

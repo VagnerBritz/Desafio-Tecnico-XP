@@ -1,5 +1,5 @@
 const userServices = require('../services/userService');
-const tokenService = require('../services/tokenService')
+const tokenService = require('../services/tokenService');
 
 const userControllers = {
     balance: async (req, res) => {

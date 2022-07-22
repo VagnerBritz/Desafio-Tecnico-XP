@@ -1,5 +1,4 @@
 const db = require('../database/models');
-const userServices = require('./userService');
 
 const util = {
     formatValue: (value) => value.replace(',', '.'),
@@ -14,8 +13,8 @@ const util = {
         }
         return true; // precisa desse return? ... 
     },
-
-    verifyStok: async (id) => {
+    
+    verifyStok: async (id) => { // verifica se existe a ação pelo código da ação
         const stok = await db.Stock.findByPk(id);
         if (!stok.dataValues) {
             const error = new Error('Código da ação inválido!');// .name = 'NotFoundError';
@@ -25,12 +24,12 @@ const util = {
         return dataValues;
     },
 
-    updateBalance: async (userId, balance) => {
+    updateBalance: async (userId, balance) => { // atualiza o saldo do cliente
         const result = await db.Account.update({ balance }, { where: { userId } });
         return result;
     },
 
-    registryOp: async ({ accountId, value, type }) => {
+    registryOp: async ({ accountId, value, type }) => { // registra a operação, tipo um log.
         const result = await db.AccountTransactions.create({ accountId, value, type });
         return result;
     },
@@ -39,7 +38,7 @@ const util = {
         const result = await db.StockPortfolio.create(data);
         return result;
     },
-    updateStocks: async (qtdeOferta, id) => {
+    updateStocks: async (qtdeOferta, id) => { //na corretora
         await db.Stock.update({ qtdeOferta }, { where: { id } });
         return true;
     },

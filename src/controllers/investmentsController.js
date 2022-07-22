@@ -1,4 +1,5 @@
 const investmentsService = require('../services/investmentsService');
+const tokenService = require('../services/tokenService');
 
 const investmentsController = {
 
@@ -7,7 +8,7 @@ const investmentsController = {
         return res.status(200).json(stoks);
     },
     getByName: async (req, res) => {
-        const { q } = req.query; // q  => codAtivo
+        const { q } = req.query;
         const stok = await investmentsService.getByName(q);
         return res.status(200).json(stok);
     },
@@ -19,7 +20,21 @@ const investmentsController = {
     buyStoks: async (req, res) => {
         const data = req.body;
         const buy = await investmentsService.buyStoks(data);
-        return res.status(200).json(buy);
+        return res.status(201).json(buy);
+    },
+    sellStock: async (req, res) => {
+      const { authorization } = req.headers;
+      const id = tokenService.getUserId(authorization);
+      const { codAtivo, qtdeAtivo } = req.body;
+      const data = { codCliente: id, codAtivo, qtdeAtivo };
+      const sell = await investmentsService.sellStock(data);
+      return res.status(201).json(sell);
+    },
+    getWalllet: async (req, res) => {
+      const { authorization } = req.headers;
+      const id = tokenService.getUserId(authorization);
+      const wallet = await investmentsService.getWallet(id);
+      res.status(200).json(wallet);
     },
 };
 

@@ -2,7 +2,6 @@ const express = require('express');
 require('express-async-errors');
 
 const bodyParser = require('body-parser');
-const tokenService = require('./services/tokenService');
 
 const app = express();
 
@@ -13,6 +12,7 @@ const investmentsRouter = require('./routers/investmentsRouter');
 
 app.use('/conta', usersRouter);
 app.use('/investimentos', investmentsRouter);
+app.all('*', (req, res) => res.status(404).json({ message: `Rota '${req.path}' não existe!` }));
 
 app.use((err, _req, res, _next) => {
     const { name, message } = err;
