@@ -22,7 +22,7 @@ const investmentsService = {
     getById: async (id) => {
       const stok = await db.Stock.findByPk(id);
       if (!stok) {
-        throw new NotFoundError('Código informado é inválido!');
+        throw new NotFoundError('Código do ativo é inválido!');
       }
       return stok;
     },

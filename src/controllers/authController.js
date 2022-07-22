@@ -4,6 +4,9 @@ const tokenService = require('../services/tokenService');
 const authControllers = {
 
     login: async (req, res) => {
+      /* #swagger.tags = ['Conta']
+        #swagger.description = 'Endpoint to sign in a specific user' 
+        */
         const { email, password } = req.body;
         const token = await userServices.login(email, password);
 

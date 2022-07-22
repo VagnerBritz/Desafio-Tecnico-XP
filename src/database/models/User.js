@@ -4,6 +4,7 @@ const createUser = (sequelize, DataTypes) => {
   const User = sequelize.define('User', {
     email: DataTypes.STRING,
     password: DataTypes.STRING,
+    active: DataTypes.BOOLEAN,
     
   }, {
     tableName: 'users',
