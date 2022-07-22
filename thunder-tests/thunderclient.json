@@ -1,0 +1,205 @@
+[
+  {
+    "_id": "74d95cd1-20fb-4d51-9a0d-f4c947d82cfa",
+    "colId": "ba3b33c4-4293-4106-baba-43545a7c408d",
+    "containerId": "",
+    "name": "acoes por nome",
+    "url": "http://localhost:3000/investimentos/search?q=usim5",
+    "method": "GET",
+    "sortNum": 10000,
+    "created": "2022-07-21T16:19:50.302Z",
+    "modified": "2022-07-22T02:16:13.995Z",
+    "headers": [],
+    "params": [
+      {
+        "name": "q",
+        "value": "usim5",
+        "isPath": false
+      }
+    ],
+    "tests": []
+  },
+  {
+    "_id": "be6df23c-113b-4feb-952d-c9edf1571255",
+    "colId": "ba3b33c4-4293-4106-baba-43545a7c408d",
+    "containerId": "",
+    "name": "acoes por id",
+    "url": "http://localhost:3000/investimentos/cod/16",
+    "method": "GET",
+    "sortNum": 20000,
+    "created": "2022-07-21T16:27:11.038Z",
+    "modified": "2022-07-21T20:20:23.346Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "2e5331d9-2b7b-4b55-909d-0f65ad554ff5",
+    "colId": "ba3b33c4-4293-4106-baba-43545a7c408d",
+    "containerId": "",
+    "name": "listar todas as ações",
+    "url": "http://localhost:3000/investimentos/",
+    "method": "GET",
+    "sortNum": 30000,
+    "created": "2022-07-21T16:27:46.826Z",
+    "modified": "2022-07-21T16:28:13.272Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "69e2915a-dfde-4b23-9054-b03230a2156c",
+    "colId": "ba3b33c4-4293-4106-baba-43545a7c408d",
+    "containerId": "",
+    "name": "login",
+    "url": "http://localhost:3000/conta/login/",
+    "method": "POST",
+    "sortNum": 40000,
+    "created": "2022-07-21T16:28:35.917Z",
+    "modified": "2022-07-22T01:12:05.278Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n    \"email\":\"ariaStark@gmail.com\",\n    \"password\": \"agulha\"\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "489ca418-c23f-4c08-a423-9377deeaaff8",
+    "colId": "ba3b33c4-4293-4106-baba-43545a7c408d",
+    "containerId": "",
+    "name": "saldo",
+    "url": "http://localhost:3000/conta/saldo/",
+    "method": "GET",
+    "sortNum": 50000,
+    "created": "2022-07-21T16:41:56.524Z",
+    "modified": "2022-07-22T01:13:13.645Z",
+    "headers": [
+      {
+        "name": "Authorization",
+        "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImVtYWlsIjoiYXJpYVN0YXJrQGdtYWlsLmNvbSIsImlkIjoyfSwiaWF0IjoxNjU4NDUyMzI1LCJleHAiOjE2NTg1Mzg3MjV9.9oxTXM4JfuxukHKRI3wBAhrRLsKU__t4ctO38zy26r8"
+      }
+    ],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "b8c02036-eeab-45c2-af2e-d7caf35e61d9",
+    "colId": "ba3b33c4-4293-4106-baba-43545a7c408d",
+    "containerId": "",
+    "name": "deposito",
+    "url": "http://localhost:3000/conta/deposito",
+    "method": "POST",
+    "sortNum": 60000,
+    "created": "2022-07-21T16:50:59.384Z",
+    "modified": "2022-07-22T02:55:15.441Z",
+    "headers": [
+      {
+        "name": "Authorization",
+        "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImVtYWlsIjoiZGFlbmVyeXNUYXJnYXJ5ZW5AZ21haWwuY29tIiwiaWQiOjF9LCJpYXQiOjE2NTg0MjE2NDIsImV4cCI6MTY1ODUwODA0Mn0.mAtLkYFRllVYr6fDEsGAqG0uUD-R5HXjxR-BpWxmm3M",
+        "isDisabled": true
+      }
+    ],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n    \"CodCliente\": \"1\",\n    \"Valor\": \"15\"\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "960bf9aa-9493-43c3-b752-9da666e9d9eb",
+    "colId": "ba3b33c4-4293-4106-baba-43545a7c408d",
+    "containerId": "",
+    "name": "saque",
+    "url": "http://localhost:3000/conta/saque",
+    "method": "POST",
+    "sortNum": 70000,
+    "created": "2022-07-21T17:09:14.523Z",
+    "modified": "2022-07-22T02:56:05.268Z",
+    "headers": [
+      {
+        "name": "Authorization",
+        "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImVtYWlsIjoiZGFlbmVyeXNUYXJnYXJ5ZW5AZ21haWwuY29tIiwiaWQiOjF9LCJpYXQiOjE2NTg0MjE2NDIsImV4cCI6MTY1ODUwODA0Mn0.mAtLkYFRllVYr6fDEsGAqG0uUD-R5HXjxR-BpWxmm3M"
+      }
+    ],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n    \"CodCliente\": \"1\",\n    \"Valor\": \"1y\"\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "b82f486c-7fac-4b16-b336-6108538c669e",
+    "colId": "ba3b33c4-4293-4106-baba-43545a7c408d",
+    "containerId": "",
+    "name": "comprar ação",
+    "url": "http://localhost:3000/investimentos/comprar",
+    "method": "POST",
+    "sortNum": 80000,
+    "created": "2022-07-21T17:10:46.426Z",
+    "modified": "2022-07-22T01:30:21.616Z",
+    "headers": [
+      {
+        "name": "Authorization",
+        "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImVtYWlsIjoiZGFlbmVyeXNUYXJnYXJ5ZW5AZ21haWwuY29tIiwiaWQiOjF9LCJpYXQiOjE2NTg0MjE2NDIsImV4cCI6MTY1ODUwODA0Mn0.mAtLkYFRllVYr6fDEsGAqG0uUD-R5HXjxR-BpWxmm3M"
+      }
+    ],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n    \"codCliente\": 1,\n    \"codAtivo\": 70,\n    \"qtdeAtivo\": 5\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "1906792d-59d7-4583-a9a8-c3cb379c2df0",
+    "colId": "ba3b33c4-4293-4106-baba-43545a7c408d",
+    "containerId": "",
+    "name": "vender ação",
+    "url": "http://localhost:3000/investimentos/vender",
+    "method": "POST",
+    "sortNum": 90000,
+    "created": "2022-07-21T18:10:54.053Z",
+    "modified": "2022-07-22T01:31:10.658Z",
+    "headers": [
+      {
+        "name": "Authorization",
+        "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImVtYWlsIjoiZGFlbmVyeXNUYXJnYXJ5ZW5AZ21haWwuY29tIiwiaWQiOjF9LCJpYXQiOjE2NTg0MjE2NDIsImV4cCI6MTY1ODUwODA0Mn0.mAtLkYFRllVYr6fDEsGAqG0uUD-R5HXjxR-BpWxmm3M",
+        "isDisabled": true
+      }
+    ],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n    \"codCliente\": \"1\",\n    \"codAtivo\": 70,\n    \"qtdeAtivo\": 1\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "9a3f8701-bf85-42a4-a7fd-7a2390b139ba",
+    "colId": "ba3b33c4-4293-4106-baba-43545a7c408d",
+    "containerId": "",
+    "name": "carteira de ações",
+    "url": "http://localhost:3000/investimentos/carteira",
+    "method": "GET",
+    "sortNum": 55000,
+    "created": "2022-07-21T19:18:04.949Z",
+    "modified": "2022-07-21T20:09:21.248Z",
+    "headers": [
+      {
+        "name": "Authorization",
+        "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImVtYWlsIjoiZGFlbmVyeXNUYXJnYXJ5ZW5AZ21haWwuY29tIiwiaWQiOjF9LCJpYXQiOjE2NTg0MjE2NDIsImV4cCI6MTY1ODUwODA0Mn0.mAtLkYFRllVYr6fDEsGAqG0uUD-R5HXjxR-BpWxmm3M"
+      }
+    ],
+    "params": [],
+    "tests": []
+  }
+]

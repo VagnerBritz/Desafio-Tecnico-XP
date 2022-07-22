@@ -8,7 +8,7 @@ module.exports = {
     host: process.env.HOSTNAME,
     port: process.env.MYSQL_PORT,
     dialect: 'mysql',
-		//logging: false, // esse que faz com que não seja impresso no terminal
+    // logging: false, // esse que faz com que não seja impresso no terminal
   },
   test: {
     username: process.env.MYSQL_USER,
