@@ -3,6 +3,7 @@ const investmentsController = require('../controllers/investmentsController');
 const authControllers = require('../controllers/authController');
 
 const router = Router();
+
 // Rotas públicas
 router.get('/', investmentsController.getAll);
 router.get('/search', investmentsController.getByName);

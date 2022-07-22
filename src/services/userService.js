@@ -1,13 +1,12 @@
 const db = require('../database/models');
+const NotFoundError = require('../error/NotFoundError');
 
 const userServices = {
 
  getBalance: async (id) => {
     const user = await db.Account.findByPk(id);
     if (!user) {
-      const error = new Error('User not found');
-      error.name = 'NotFoundError';
-      throw error;
+      throw new NotFoundError('Usuário não encontrado!');
     }
       
     let { userId, balance } = user.dataValues;

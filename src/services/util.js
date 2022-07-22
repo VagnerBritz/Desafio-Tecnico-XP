@@ -1,4 +1,6 @@
 const db = require('../database/models');
+const UnauthorizedError = require('../error/UnauthorizedError');
+const NotFoundError = require('../error/NotFoundError');
 
 const util = {
     formatValue: (value) => value.replace(',', '.'),
@@ -7,18 +9,14 @@ const util = {
         const number = Number(value);
         
         if (isNaN (number) || number <= 0) {
-            const error = new Error('Valor inválido!');
-            error.name = 'UnauthorizedError';
-            throw error;
+          throw new UnauthorizedError('Valor inválido!');
         }
-        return true; // precisa desse return? ... 
     },
     
     verifyStok: async (id) => { // verifica se existe a ação pelo código da ação
         const stok = await db.Stock.findByPk(id);
         if (!stok.dataValues) {
-            const error = new Error('Código da ação inválido!');// .name = 'NotFoundError';
-            throw error; 
+          throw new NotFoundError('Código da ação inválido!'); 
         }
         const { dataValues } = stok;
         return dataValues;
@@ -38,7 +36,7 @@ const util = {
         const result = await db.StockPortfolio.create(data);
         return result;
     },
-    updateStocks: async (qtdeOferta, id) => { //na corretora
+    updateStocks: async (qtdeOferta, id) => { // na corretora
         await db.Stock.update({ qtdeOferta }, { where: { id } });
         return true;
     },

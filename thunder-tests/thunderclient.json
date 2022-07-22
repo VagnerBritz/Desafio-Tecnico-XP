@@ -8,7 +8,7 @@
     "method": "GET",
     "sortNum": 10000,
     "created": "2022-07-21T16:19:50.302Z",
-    "modified": "2022-07-22T01:08:54.518Z",
+    "modified": "2022-07-22T02:16:13.995Z",
     "headers": [],
     "params": [
       {
@@ -94,7 +94,7 @@
     "method": "POST",
     "sortNum": 60000,
     "created": "2022-07-21T16:50:59.384Z",
-    "modified": "2022-07-22T01:14:43.352Z",
+    "modified": "2022-07-22T02:55:15.441Z",
     "headers": [
       {
         "name": "Authorization",
@@ -105,7 +105,7 @@
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n    \"CodCliente\": \"1\",\n    \"Valor\": \"50000\"\n}",
+      "raw": "{\n    \"CodCliente\": \"1\",\n    \"Valor\": \"15\"\n}",
       "form": []
     },
     "tests": []
@@ -119,7 +119,7 @@
     "method": "POST",
     "sortNum": 70000,
     "created": "2022-07-21T17:09:14.523Z",
-    "modified": "2022-07-22T01:16:12.531Z",
+    "modified": "2022-07-22T02:56:05.268Z",
     "headers": [
       {
         "name": "Authorization",
@@ -129,7 +129,7 @@
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n    \"CodCliente\": \"1\",\n    \"Valor\": \"50\"\n}",
+      "raw": "{\n    \"CodCliente\": \"1\",\n    \"Valor\": \"1y\"\n}",
       "form": []
     },
     "tests": []

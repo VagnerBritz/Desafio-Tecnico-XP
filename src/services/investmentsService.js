@@ -1,6 +1,7 @@
 const db = require('../database/models');
 const util = require('./util');
 const userServices = require('./userService');
+const NotFoundError = require('../error/NotFoundError');
 
 const investmentsService = {
     
@@ -12,9 +13,7 @@ const investmentsService = {
   getByName: async (codAtivo) => {
       const stok = await db.Stock.findOne({ where: { codAtivo } });
       if (!stok) {
-        const error = new Error('Ação não encontrada. Pesquise nesse formato: "PETR4"');
-        error.name = 'NotFoundError';
-        throw error;
+        throw new NotFoundError('Ação não encontrada. Pesquise nesse formato: "PETR4"');
       }
 
       return stok;
@@ -23,9 +22,7 @@ const investmentsService = {
     getById: async (id) => {
       const stok = await db.Stock.findByPk(id);
       if (!stok) {
-        const error = new Error('Código informado é inválido!');
-        error.name = 'NotFoundError';
-        throw error;
+        throw new NotFoundError('Código informado é inválido!');
       }
       return stok;
     },
