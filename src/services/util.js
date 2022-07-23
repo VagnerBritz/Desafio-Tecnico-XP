@@ -8,7 +8,7 @@ const util = {
     isvalid: (value) => {    
         const number = Number(value);
         
-        if (isNaN (number) || number <= 0) {
+        if (isNaN(number) || number <= 0) {
           throw new UnauthorizedError('Valor inválido!');
         }
     },
@@ -36,9 +36,17 @@ const util = {
         const result = await db.StockPortfolio.create(data);
         return result;
     },
-    updateStocks: async (qtdeOferta, id) => { // na corretora
+    updateStocks: async (qtdeOferta, id) => { // atualiza qtde de ações na corretora
         await db.Stock.update({ qtdeOferta }, { where: { id } });
         return true;
+    },
+    formatBRL: (value) => {
+      const formatter = new Intl.NumberFormat('pt-BR', {
+        style: 'currency',
+        currency: 'BRL',
+      });
+      const formatted = formatter.format(value);
+      return formatted;
     },
 };
 

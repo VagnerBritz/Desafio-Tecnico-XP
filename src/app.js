@@ -2,16 +2,18 @@ const express = require('express');
 require('express-async-errors');
 
 const bodyParser = require('body-parser');
-
-const app = express();
-
-app.use(bodyParser.json());
-
+const swaggerUi = require('swagger-ui-express');
+const swaggerOutput = require('./docs/swagger-output.json');
 const usersRouter = require('./routers/userRouter');
 const investmentsRouter = require('./routers/investmentsRouter');
 
+const app = express();
+app.use(bodyParser.json());
+app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerOutput));
+
 app.use('/conta', usersRouter);
 app.use('/investimentos', investmentsRouter);
+
 app.all('*', (req, res) => res.status(404).json({ message: `Rota '${req.path}' não existe!` }));
 
 app.use((err, _req, res, _next) => {
