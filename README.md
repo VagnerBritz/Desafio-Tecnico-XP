@@ -32,21 +32,33 @@ Boas vindas ao projeto API  XP, abaixo estão compilados informações sobre o p
 * NodeJs;
 * Express;
 * Sequelize;
-* JWT - Jason Web Token;
+* JWT - Json Web Token;
 * Express async errors;
-* mysql
+* Mysql
 
 ## Tomada de decisão
   
 Decidi fazer o teste em back end por me identificar mais com essa área. Com o desafio em mãos separei o desafio em etapas menores para poder planejar melhor como desenvolver. 
     Decidi que seria melhor separar conta corrente de carteira de investimentos. Modelei o banco de dados conforme a figura abaixo:
  <details>
-  <summary  id="diagrama"><strong> Diagrama ER e Entidades</strong></summary>
-  #### Diagrama de Entidade-Relacionamento
-    ![diagrama EER](./src/images/EER.png).
+  <summary  id="diagrama"><strong> Diagrama de Entidade-Relacionamento</strong></summary>
+    ![diagrama EER](./public/EER.png)
 </details>   
-A arquitetura de software apliquei observando a estrutura MSC(Model-Service-Controller) isolando as responsabilidades de cada camada. Para gerenciar o banco de dados mysql usei o ORM Sequelize. Embora ainda não habituado ao sequelize fiz questão de usá-lo para melhor entender seu funcionamento e ganhar experiência com ele. 
 
+A arquitetura de software apliquei observando a estrutura MSC(Model-Service-Controller) isolando as responsabilidades de cada camada. Para gerenciar o banco de dados mysql usei o ORM Sequelize. Embora ainda não habituado ao sequelize fiz questão de usá-lo para melhor entender seu funcionamento e ganhar experiência com ele. 
+Usei a biblioteca express-async-erro para capturar os erros do código evitando ter de usar o `tryCatch` em cada função que possa gerar erro e quebrar a aplicação.
+ Utilizei o JWT para criar rotas privadas além de salvar as senhas no banco de dados criptografadas. 
   
 ## Itens à fazer
+
+* Estrutura de transactions do sequelize;
+* Testes unitários e de integração;
+
 ## Pontos de melhoria
+
+Escrevi o código, num primeiro momento para que ele "funcionasse" e depois refatorar para melhorar a sintaxe e a reduzir a complexidade. Durante esse processo pode ter sido esquecido algo e não sido implementado. Tendo algumas funcionalidade que são essenciais e que acabaram não foram implementadas. Um exemplo disso é a estrutura de transactions do sequelize que reverteria uma(s) funções de gravação de tabelas do banco de dados caso houvesse algum erro. Tentei implementar esta função mas não consegui fazer funcionar naquele momento e em função do tempo não consegui implementar. 
+Pontos importantes de melhoria:
+* Validação dos dados;
+* Melhoria na nomenclatura de arquivos e variáveis.
+
+
