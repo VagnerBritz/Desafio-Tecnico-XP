@@ -42,7 +42,7 @@ Decidi fazer o teste em back end por me identificar mais com essa área. Com o d
     Decidi que seria melhor separar conta corrente de carteira de investimentos. Modelei o banco de dados conforme a figura abaixo:
  <details>
   <summary  id="diagrama"><strong> Diagrama de Entidade-Relacionamento</strong></summary>
-    [diagrama EER](./public/EER.png)
+    ![diagrama EER](public/EER.png)
 </details>   
 
 A arquitetura de software apliquei observando a estrutura MSC(Model-Service-Controller) isolando as responsabilidades de cada camada. Para gerenciar o banco de dados mysql usei o ORM Sequelize. Embora ainda não habituado ao sequelize fiz questão de usá-lo para melhor entender seu funcionamento e ganhar experiência com ele. 
