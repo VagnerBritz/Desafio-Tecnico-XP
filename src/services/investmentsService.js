@@ -2,6 +2,7 @@ const db = require('../database/models');
 const util = require('./util');
 const userServices = require('./userService');
 const NotFoundError = require('../error/NotFoundError');
+const UnauthorizedError = require('../error/UnauthorizedError');
 
 const investmentsService = {
     
@@ -35,13 +36,18 @@ const investmentsService = {
       qtdeAtivo = Number(qtdeAtivo);
       valorUnit = Number(valorUnit);
       
-      // verifica se a quantidade à comprar é inferior à qtde a venda
-      if (qtdeAtivo > qtdeOferta) return false;// lancar erro aqui
+      if (qtdeAtivo > qtdeOferta) {
+        throw new UnauthorizedError(
+          `Quantidade desejada é inferior a disponível na corretora. Disponível: ${qtdeOferta}`,
+          );
+      }
       
       const total = qtdeAtivo * valorUnit; // calcula o valor total da compra
       
       const { Saldo } = await userServices.getBalance(codCliente); // consulta o saldo
-      if (Saldo < total) return false;
+      if (Saldo < total) {
+        throw new UnauthorizedError('Saldo insuficiente para completar a transação!');
+      }
       
       const newBalance = Saldo - total;
       await util.updateBalance(codCliente, newBalance); // atualiza o saldo do cliente
@@ -53,25 +59,33 @@ const investmentsService = {
         userId: codCliente, codAtivo, qtde: qtdeAtivo, valorCompra: valorUnit, registroId: id };
       
         const newOffer = qtdeOferta - qtdeAtivo;
-      await util.updateStocks(newOffer, codAtivo); // atualiza qtde na stocks
+      await util.updateStocks(newOffer, codAtivo); // atualiza qtde na stocks(corretora)
 
       const create = await util.updatePortfolio(info); // registra a operação na carteira de investimentos
+      const { userId, qtde } = create.dataValues;
       const response = { 
-        ...create.toJSON(),
-        valorOperacao: value,
+        userId,
+        codAtivo,
+        qtde,
+        valorUnit: util.formatBRL(valorUnit),
+        valorOperacao: util.formatBRL(value),
         acao: nome,
         message: 'Compra efetuada com sucesso!' };
+
       return response;
     },
 
     // eslint-disable-next-line max-lines-per-function
     sellStock: async (data) => { // assumo que vem numeros
-      const { codCliente, codAtivo, qtdeAtivo } = data;
-      
+      let { codCliente, codAtivo, qtdeAtivo } = data;
+      qtdeAtivo = Number(qtdeAtivo);
       const qtdeUser = await db.StockPortfolio.sum('qtde', { // quantidade do cliente
         where: { codAtivo, userId: codCliente }, 
       });
-      if (qtdeUser < qtdeAtivo) return 'Ativo inexistente ou quantidade inválida';
+
+      if (qtdeUser < qtdeAtivo) {
+        throw new UnauthorizedError('Você não possui este ativo ou essa quantidade em carteira!');
+      }
 
       let { valorUnit, qtdeOferta, nome } = await util.verifyStok(codAtivo); // quantidade existente na corretora
   
@@ -84,18 +98,31 @@ const investmentsService = {
       const totalOp = Number((qtdeAtivo * valorUnit).toFixed(2)); // valor total da transação;
       const newBalance = totalOp + Saldo; // novo saldo em conta, considerando o valor da venda 
 
-      const registry = await util.registryOp({ accountId: codCliente, value: totalOp, type: 'SELL' }); // registra na tabela a operação 
+      const registry = await util.registryOp(
+        { accountId: codCliente, value: totalOp, type: 'SELL' },
+        ); // registra na tabela a operação 
+
       const { id, value } = registry.dataValues;
 
       await util.updateStocks(newOffer, codAtivo); // atualiza qtde de ações na corretora
       await util.updateBalance(codCliente, newBalance); // atualiza o saldo do cliente
 
       const info = {
-        userId: codCliente, codAtivo, qtde: (qtdeAtivo * -1), valorCompra: valorUnit, registroId: id };
+        userId: codCliente, 
+        codAtivo, 
+        qtde: (qtdeAtivo * -1), 
+        valorCompra: valorUnit,
+        registroId: id,
+      };
+      
       const create = await util.updatePortfolio(info); // registra a operação na carteira de investimentos
+      const { userId, qtde } = create.dataValues;
       const response = { 
-        ...create.toJSON(),
-        valorOperacao: value,
+        userId,
+        codAtivo,
+        qtdeVendida: (qtde * -1),
+        valorUnit: util.formatBRL(valorUnit),
+        valorOperacao: util.formatBRL(value),
         acao: nome,
         message: 'Venda efetuada com sucesso!' };
       return response;
@@ -103,6 +130,9 @@ const investmentsService = {
 
     getWallet: async (id) => {
     const wallet = await db.StockPortfolio.findAll({ where: { userId: id } });
+    if (!wallet.length) {
+      throw new NotFoundError('Você ainda não têm ações!');
+    }
       return wallet;
     },
 };

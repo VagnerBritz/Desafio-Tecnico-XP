@@ -94,7 +94,7 @@
     "method": "POST",
     "sortNum": 60000,
     "created": "2022-07-21T16:50:59.384Z",
-    "modified": "2022-07-22T19:16:26.927Z",
+    "modified": "2022-07-23T01:07:57.538Z",
     "headers": [
       {
         "name": "Authorization",
@@ -104,7 +104,7 @@
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n    \"CodCliente\": \"1\",\n    \"Valor\": \"1500\"\n}",
+      "raw": "{\n    \"CodCliente\": \"1\",\n    \"Valor\": \"10000\"\n}",
       "form": []
     },
     "tests": []
@@ -118,7 +118,7 @@
     "method": "POST",
     "sortNum": 70000,
     "created": "2022-07-21T17:09:14.523Z",
-    "modified": "2022-07-22T19:18:10.451Z",
+    "modified": "2022-07-23T01:05:59.348Z",
     "headers": [
       {
         "name": "Authorization",
@@ -128,7 +128,7 @@
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n    \"CodCliente\": \"1\",\n    \"Valor\": \"100\"\n}",
+      "raw": "{\n    \"CodCliente\": \"1\",\n    \"Valor\": \"1500000\"\n}",
       "form": []
     },
     "tests": []
@@ -142,7 +142,7 @@
     "method": "POST",
     "sortNum": 80000,
     "created": "2022-07-21T17:10:46.426Z",
-    "modified": "2022-07-22T19:26:01.472Z",
+    "modified": "2022-07-23T01:13:16.602Z",
     "headers": [
       {
         "name": "Authorization",
@@ -152,7 +152,7 @@
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n    \"codCliente\": 1,\n    \"codAtivo\": 70,\n    \"qtdeAtivo\": 5\n}",
+      "raw": "{\n    \"codCliente\":\"1\",\n    \"codAtivo\": \"5\",\n    \"qtdeAtivo\": \"10\"\n}",
       "form": []
     },
     "tests": []
@@ -166,7 +166,7 @@
     "method": "POST",
     "sortNum": 90000,
     "created": "2022-07-21T18:10:54.053Z",
-    "modified": "2022-07-22T19:27:22.958Z",
+    "modified": "2022-07-23T01:56:57.941Z",
     "headers": [
       {
         "name": "Authorization",
@@ -176,7 +176,7 @@
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n    \"codCliente\": \"2\",\n    \"codAtivo\": 70,\n    \"qtdeAtivo\": 1\n}",
+      "raw": "{\n    \n    \"codAtivo\": \"5\",\n    \"qtdeAtivo\": \"10\"\n}",
       "form": []
     },
     "tests": []
