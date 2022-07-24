@@ -56,12 +56,12 @@
     "method": "POST",
     "sortNum": 40000,
     "created": "2022-07-21T16:28:35.917Z",
-    "modified": "2022-07-22T19:11:29.276Z",
+    "modified": "2022-07-24T14:44:03.295Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n    \"email\":\"daenerysTargaryen@gmail.com\",\n    \"password\": \"123456\"\n}",
+      "raw": "{\n    \"email\": \"tpalguem@alguem.com.br\",\n    \"password\": \"confia#SQN\"\n}",
       "form": []
     },
     "tests": []
@@ -71,15 +71,15 @@
     "colId": "ba3b33c4-4293-4106-baba-43545a7c408d",
     "containerId": "",
     "name": "saldo",
-    "url": "http://localhost:3000/conta/1",
+    "url": "http://localhost:3000/conta/5",
     "method": "GET",
     "sortNum": 50000,
     "created": "2022-07-21T16:41:56.524Z",
-    "modified": "2022-07-23T23:54:37.562Z",
+    "modified": "2022-07-24T14:44:43.808Z",
     "headers": [
       {
         "name": "Authorization",
-        "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImVtYWlsIjoiZGFlbmVyeXNUYXJnYXJ5ZW5AZ21haWwuY29tIiwiaWQiOjF9LCJpYXQiOjE2NTg2MjAyMTMsImV4cCI6MTY1ODcwNjYxM30.5SWFVlPz29fQbwgw9qyQkY8mao3c6pZ8p5fRCjeQAP0"
+        "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImVtYWlsIjoidHBhbGd1ZW1AYWxndWVtLmNvbS5iciIsImlkIjo1fSwiaWF0IjoxNjU4NjczODQzLCJleHAiOjE2NTg3NjAyNDN9.tqLfeGTyCuI2GpU1DTjWqQY3ItUAfZ4nUGEkMxNtC00"
       }
     ],
     "params": [],
@@ -94,17 +94,18 @@
     "method": "POST",
     "sortNum": 60000,
     "created": "2022-07-21T16:50:59.384Z",
-    "modified": "2022-07-24T01:22:26.381Z",
+    "modified": "2022-07-24T14:27:16.197Z",
     "headers": [
       {
         "name": "Authorization",
-        "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImVtYWlsIjoiZGFlbmVyeXNUYXJnYXJ5ZW5AZ21haWwuY29tIiwiaWQiOjF9LCJpYXQiOjE2NTg1MTcwODksImV4cCI6MTY1ODYwMzQ4OX0.sY72DFq5QE2yewEtXNUqXP-rj_X5JTBQJGJoAbYeKxg"
+        "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImVtYWlsIjoiZGFlbmVyeXNUYXJnYXJ5ZW5AZ21haWwuY29tIiwiaWQiOjF9LCJpYXQiOjE2NTg1MTcwODksImV4cCI6MTY1ODYwMzQ4OX0.sY72DFq5QE2yewEtXNUqXP-rj_X5JTBQJGJoAbYeKxg",
+        "isDisabled": true
       }
     ],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n    \"CodCliente\": \"1\",\n    \"Valor\": \"5000.00\"\n}",
+      "raw": "{\n    \"CodCliente\": 3,\n    \"Valor\": \"5000.00\"\n}",
       "form": []
     },
     "tests": []
@@ -210,7 +211,7 @@
     "method": "DELETE",
     "sortNum": 100000,
     "created": "2022-07-22T17:12:43.338Z",
-    "modified": "2022-07-24T01:03:21.892Z",
+    "modified": "2022-07-24T14:14:00.690Z",
     "headers": [
       {
         "name": "Authorization",
@@ -220,7 +221,31 @@
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n    \"CodCliente\": 1\n}",
+      "raw": "{\n    \"codCliente\": 1\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "cd2d8bd9-8fa4-4329-9d12-448ddc628b9d",
+    "colId": "ba3b33c4-4293-4106-baba-43545a7c408d",
+    "containerId": "",
+    "name": "cria conta",
+    "url": "http://localhost:3000/conta/criar/",
+    "method": "POST",
+    "sortNum": 110000,
+    "created": "2022-07-24T13:46:42.914Z",
+    "modified": "2022-07-24T14:36:30.375Z",
+    "headers": [
+      {
+        "name": "Authorization",
+        "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImVtYWlsIjoiZGFlbmVyeXNUYXJnYXJ5ZW5AZ21haWwuY29tIiwiaWQiOjF9LCJpYXQiOjE2NTg2MjAyMTMsImV4cCI6MTY1ODcwNjYxM30.5SWFVlPz29fQbwgw9qyQkY8mao3c6pZ8p5fRCjeQAP0"
+      }
+    ],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n    \"email\": \"tpalguem@alguem.com.br\",\n    \"password\": \"confia#SQN\"\n}",
       "form": []
     },
     "tests": []

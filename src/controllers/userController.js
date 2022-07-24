@@ -15,8 +15,9 @@ const userControllers = {
         return res.status(200).json(stoks);
     },
     createAccount: async (req, res) => {
-      const a = 1;
-      return res.status(201).end(a);
+      const data = req.body;
+      const create = await userServices.createAccount(data);
+      return res.status(201).json(create);
     },
     deleteAccount: async (req, res) => {
       const { authorization } = req.headers;

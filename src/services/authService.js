@@ -6,7 +6,6 @@ const UnauthorizedError = require('../error/UnauthorizedError');
 const authServices = {
   
  login: async (email, password) => {
-    // const passwordHash = await authServices.encrypt(password);
     const user = await db.User.findOne({ where: { email, active: true } });
     if (!user) {
       throw new UnauthorizedError('E-mail ou senha incorreta');
