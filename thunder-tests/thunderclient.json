@@ -71,15 +71,15 @@
     "colId": "ba3b33c4-4293-4106-baba-43545a7c408d",
     "containerId": "",
     "name": "saldo",
-    "url": "http://localhost:3000/conta/saldo/",
+    "url": "http://localhost:3000/conta/1",
     "method": "GET",
     "sortNum": 50000,
     "created": "2022-07-21T16:41:56.524Z",
-    "modified": "2022-07-22T19:17:18.098Z",
+    "modified": "2022-07-23T23:54:37.562Z",
     "headers": [
       {
         "name": "Authorization",
-        "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImVtYWlsIjoiZGFlbmVyeXNUYXJnYXJ5ZW5AZ21haWwuY29tIiwiaWQiOjF9LCJpYXQiOjE2NTg1MTcwODksImV4cCI6MTY1ODYwMzQ4OX0.sY72DFq5QE2yewEtXNUqXP-rj_X5JTBQJGJoAbYeKxg"
+        "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImVtYWlsIjoiZGFlbmVyeXNUYXJnYXJ5ZW5AZ21haWwuY29tIiwiaWQiOjF9LCJpYXQiOjE2NTg2MjAyMTMsImV4cCI6MTY1ODcwNjYxM30.5SWFVlPz29fQbwgw9qyQkY8mao3c6pZ8p5fRCjeQAP0"
       }
     ],
     "params": [],
@@ -94,7 +94,7 @@
     "method": "POST",
     "sortNum": 60000,
     "created": "2022-07-21T16:50:59.384Z",
-    "modified": "2022-07-23T01:07:57.538Z",
+    "modified": "2022-07-24T01:22:26.381Z",
     "headers": [
       {
         "name": "Authorization",
@@ -104,7 +104,7 @@
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n    \"CodCliente\": \"1\",\n    \"Valor\": \"10000\"\n}",
+      "raw": "{\n    \"CodCliente\": \"1\",\n    \"Valor\": \"5000.00\"\n}",
       "form": []
     },
     "tests": []
@@ -118,17 +118,17 @@
     "method": "POST",
     "sortNum": 70000,
     "created": "2022-07-21T17:09:14.523Z",
-    "modified": "2022-07-23T01:05:59.348Z",
+    "modified": "2022-07-23T23:01:29.873Z",
     "headers": [
       {
         "name": "Authorization",
-        "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImVtYWlsIjoiZGFlbmVyeXNUYXJnYXJ5ZW5AZ21haWwuY29tIiwiaWQiOjF9LCJpYXQiOjE2NTg1MTcwODksImV4cCI6MTY1ODYwMzQ4OX0.sY72DFq5QE2yewEtXNUqXP-rj_X5JTBQJGJoAbYeKxg"
+        "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImVtYWlsIjoiZGFlbmVyeXNUYXJnYXJ5ZW5AZ21haWwuY29tIiwiaWQiOjF9LCJpYXQiOjE2NTg2MTUwODEsImV4cCI6MTY1ODcwMTQ4MX0.q4XUuGvxT48zYFblxcSNlpdmyWxRO8shxToI7-46Y4I"
       }
     ],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n    \"CodCliente\": \"1\",\n    \"Valor\": \"1500000\"\n}",
+      "raw": "{\n    \"CodCliente\": 1,\n    \"Valor\": 10.0\n}",
       "form": []
     },
     "tests": []
@@ -142,11 +142,11 @@
     "method": "POST",
     "sortNum": 80000,
     "created": "2022-07-21T17:10:46.426Z",
-    "modified": "2022-07-23T01:13:16.602Z",
+    "modified": "2022-07-24T01:21:51.520Z",
     "headers": [
       {
         "name": "Authorization",
-        "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImVtYWlsIjoiZGFlbmVyeXNUYXJnYXJ5ZW5AZ21haWwuY29tIiwiaWQiOjF9LCJpYXQiOjE2NTg1MTcwODksImV4cCI6MTY1ODYwMzQ4OX0.sY72DFq5QE2yewEtXNUqXP-rj_X5JTBQJGJoAbYeKxg"
+        "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImVtYWlsIjoiZGFlbmVyeXNUYXJnYXJ5ZW5AZ21haWwuY29tIiwiaWQiOjF9LCJpYXQiOjE2NTg2MjAyMTMsImV4cCI6MTY1ODcwNjYxM30.5SWFVlPz29fQbwgw9qyQkY8mao3c6pZ8p5fRCjeQAP0"
       }
     ],
     "params": [],
@@ -190,11 +190,12 @@
     "method": "GET",
     "sortNum": 55000,
     "created": "2022-07-21T19:18:04.949Z",
-    "modified": "2022-07-22T19:12:39.180Z",
+    "modified": "2022-07-23T20:39:43.469Z",
     "headers": [
       {
         "name": "Authorization",
-        "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImVtYWlsIjoiZGFlbmVyeXNUYXJnYXJ5ZW5AZ21haWwuY29tIiwiaWQiOjF9LCJpYXQiOjE2NTg1MTcwODksImV4cCI6MTY1ODYwMzQ4OX0.sY72DFq5QE2yewEtXNUqXP-rj_X5JTBQJGJoAbYeKxg"
+        "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImVtYWlsIjoiZGFlbmVyeXNUYXJnYXJ5ZW5AZ21haWwuY29tIiwiaWQiOjF9LCJpYXQiOjE2NTg2MDg1ODcsImV4cCI6MTY1ODY5NDk4N30.YmOoG8-lINIH5eq1TWAtEbTcrXBvxyFApTZfjrbaefQ",
+        "isDisabled": true
       }
     ],
     "params": [],
@@ -205,18 +206,23 @@
     "colId": "ba3b33c4-4293-4106-baba-43545a7c408d",
     "containerId": "",
     "name": "inativa conta",
-    "url": "http://localhost:3000/conta/",
+    "url": "http://localhost:3000/conta/encerrar/",
     "method": "DELETE",
     "sortNum": 100000,
     "created": "2022-07-22T17:12:43.338Z",
-    "modified": "2022-07-22T17:15:52.968Z",
+    "modified": "2022-07-24T01:03:21.892Z",
     "headers": [
       {
         "name": "Authorization",
-        "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImVtYWlsIjoiYXJpYVN0YXJrQGdtYWlsLmNvbSIsImlkIjoyfSwiaWF0IjoxNjU4NTEwMDY1LCJleHAiOjE2NTg1OTY0NjV9.n3ZhLjERGZmE_ud6UOSDfMpc2Ghmy_BsO_iV7J8Im9c"
+        "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImVtYWlsIjoiZGFlbmVyeXNUYXJnYXJ5ZW5AZ21haWwuY29tIiwiaWQiOjF9LCJpYXQiOjE2NTg2MjAyMTMsImV4cCI6MTY1ODcwNjYxM30.5SWFVlPz29fQbwgw9qyQkY8mao3c6pZ8p5fRCjeQAP0"
       }
     ],
     "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n    \"CodCliente\": 1\n}",
+      "form": []
+    },
     "tests": []
   }
 ]

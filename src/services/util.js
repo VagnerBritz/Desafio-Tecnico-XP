@@ -3,8 +3,13 @@ const UnauthorizedError = require('../error/UnauthorizedError');
 const NotFoundError = require('../error/NotFoundError');
 
 const util = {
-    formatValue: (value) => value.replace(',', '.'),
-
+    formatValue: (value) => {
+      if (typeof value === 'string') {
+        return value.replace(',', '.');
+      }
+      return value;
+    },
+    
     isvalid: (value) => {    
         const number = Number(value);
         

@@ -3,9 +3,10 @@
   "info": {
     "version": "1.0.0",
     "title": "API XP - Teste Técnico",
-    "description": "Api que simula operações básicas de conta corrente (saque e depósito), \n        e de corretora de investimentos (compra e venda de ações)."
+    "description": "Api que simula operações básicas de conta corrente (saque e depósito) e de corretora de investimentos (compra e venda de ações)."
   },
   "host": "localhost:3000",
+  
   "basePath": "/",
   "tags": [
     {
@@ -18,8 +19,8 @@
     }
   ],
   "schemes": [
-    "http",
-    "https"
+    "http"
+    
   ],
   "securityDefinitions": {
     "apiKeyAuth": {
@@ -41,19 +42,24 @@
         "tags": [
           "Conta"
         ],
-        "description": "Endpoint to sign in a specific user",
+        "description": "Endpoint para logar um usuário em específico.",
         "parameters": [
           {
-            "name": "body",
+            "name":"body",
             "in": "body",
+            "description": "Não é necessário passar id de cliente. O sistema retornará um token.",
             "schema": {
               "type": "object",
               "properties": {
                 "email": {
-                  "example": "any"
+                  "required":true,
+                  "type":"string",
+                  "example": "daenerysTargaryen@gmail.com"
                 },
                 "password": {
-                  "example": "any"
+                  "required":true,
+                  "type":"string",
+                  "example": "123456"
                 }
               }
             }
@@ -68,19 +74,29 @@
     },
     "/conta/deposito": {
       "post": {
-        "description": "",
+        "tags": [
+          "Conta"
+        ],
+        "summary": "Deposito na conta corrente",
+        "description": "Endpoint para depositar numa conta. Não é necessário estar logado.",
         "parameters": [
           {
             "name": "body",
             "in": "body",
+            "description": "Existe duas contas pré-cadastradas(1 e 2)",
             "schema": {
               "type": "object",
               "properties": {
                 "CodCliente": {
-                  "example": "any"
+                  "required":true,
+                  "type":"integer",
+                  "example": 1
                 },
-                "Valor": {
-                  "example": "any"
+                "Valor": {  
+                  
+                  "required":true,
+                  "type":"decimal",
+                  "example": 100
                 }
               }
             }
@@ -95,7 +111,8 @@
     },
     "/conta/saque": {
       "post": {
-        "description": "",
+        "tags":["Conta"],
+        "description": "Endpoint para sacar valor",
         "parameters": [
           {
             "name": "authorization",
@@ -109,10 +126,12 @@
               "type": "object",
               "properties": {
                 "CodCliente": {
-                  "example": "any"
+                  "type":"integer",
+                  "example": "1"
                 },
                 "Valor": {
-                  "example": "any"
+                  "type":"bool",
+                  "example": "100.00"
                 }
               }
             }
@@ -127,13 +146,16 @@
     },
     "/conta/{id}": {
       "get": {
+        "tags":["Conta"],
+        "summary": "Consulta de saldo conta corrente",
         "description": "",
         "parameters": [
           {
             "name": "id",
+            "example": 1,
             "in": "path",
             "required": true,
-            "type": "string"
+            "type": "integer"
           },
           {
             "name": "authorization",
@@ -148,14 +170,30 @@
         }
       }
     },
-    "/conta/": {
+    "/conta/encerrar/": {
       "delete": {
+        "tags":["Conta"],
+        "summary": "Desativa a conta corrente",
         "description": "",
+        
         "parameters": [
           {
             "name": "authorization",
             "in": "header",
             "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "CodCliente": {
+                  "type":"integer",
+                  "example": "1"
+                }
+              }
+            }
           }
         ],
         "responses": {
@@ -170,7 +208,8 @@
         "tags": [
           "Investimentos"
         ],
-        "description": "Endpoint para consultar todos os ativos disponíveis",
+        "description": "Endpoint para consultar todos os ativos disponíveis na corretora",
+        "summary": "Lista as ações existentes na corretora",
         "parameters": [],
         "responses": {
           "200": {
@@ -184,12 +223,14 @@
         "tags": [
           "Investimentos"
         ],
-        "description": "Endpoint para consultar os ativos por nome",
+        "description": "Endpoint para consultar os ativos por nome. Os ativos disponíveis são os do índice IBrX100",
+        "summary": "Pesquisa pelo código do ativo",
         "parameters": [
           {
             "name": "q",
             "in": "query",
-            "type": "string"
+            "type": "string",
+            "example": "PETR4"
           }
         ],
         "responses": {
@@ -204,13 +245,16 @@
         "tags": [
           "Investimentos"
         ],
-        "description": "Endpoint para consultar um ativo pelo codAtivo",
+          "description": "Endpoint para consultar um ativo pelo codAtivo ( de nº 1 ao 88).",
+        "summary": "Pesquisa pelo cod_ativo",
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
-            "type": "string"
+            "type": "string",
+            "example": "37"
+
           }
         ],
         "responses": {
@@ -226,6 +270,7 @@
           "Investimentos"
         ],
         "description": "Endpoint para retornar os ativo da carteira do usuário",
+        "summary": "Retorna os ativos do cliente",
         "parameters": [
           {
             "name": "authorization",
@@ -251,6 +296,27 @@
             "name": "authorization",
             "in": "header",
             "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "codCliente": {
+                  "type":"integer",
+                  "example": 1
+                },
+                "codAtivo": {
+                  "type":"integer",
+                  "example": 23
+                },
+                "qtdeAtivo": {
+                  "type":"integer",
+                  "example": 100
+                }
+              }
+            }
           }
         ],
         "responses": {
@@ -278,11 +344,17 @@
             "schema": {
               "type": "object",
               "properties": {
+                "codCliente": {
+                  "type":"integer",
+                  "example": 1
+                },
                 "codAtivo": {
-                  "example": "any"
+                  "type":"integer",
+                  "example": 23
                 },
                 "qtdeAtivo": {
-                  "example": "any"
+                  "type":"integer",
+                  "example": 100
                 }
               }
             }

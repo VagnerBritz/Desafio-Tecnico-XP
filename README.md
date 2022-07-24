@@ -21,10 +21,11 @@ Boas vindas ao projeto API  XP, abaixo estão compilados informações sobre o p
   - A partir daqui você pode rodar o container `projeto_xp` via CLI ou abri-lo no VS Code;
 
   - Instale as dependências com `npm install` e rode a aplicação com `npm start`, assim a aplicação criará o banco de dados e fará o povoamente das tabelas, iniciando a aplicação.
+  - É possível testar a API localmente pelo swagger. Url ` http://localhost:3000/docs/`. 
 
   ## Rodando localmente 
 
- - Inicie a instalação das dependências com `npm install` e execute o comando `npm start`, assim a aplicação criará o banco de dados e fará o povoamente das tabelas, iniciando a aplicação.
+ - Inicie a instalação das dependências com `npm install` e execute o comando `npm start`, assim a aplicação criará o banco de dados e fará o povoamente das tabelas, iniciando a aplicação. É possível testar a API localmente pelo swagger. Url ` http://localhost:3000/docs/`. 
 
 </details>
 
