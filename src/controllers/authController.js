@@ -4,19 +4,14 @@ const tokenService = require('../services/tokenService');
 const authControllers = {
 
     login: async (req, res) => {
-      /* #swagger.tags = ['Conta']
-        #swagger.description = 'Endpoint to sign in a specific user' 
-        */
-        const { email, password } = req.body;
-        const token = await userServices.login(email, password);
-
-        return res.status(200).json(token);
+      const { email, password } = req.body;
+      const token = await userServices.login(email, password);
+      return res.status(200).json(token);
     },
 
     validateToken: (req, _res, next) => {
         const { authorization } = req.headers;
         tokenService.validate(authorization);
-        // retornar o id para que o usuario só possa utilizar a propria ocnta
         next();
     },
 };

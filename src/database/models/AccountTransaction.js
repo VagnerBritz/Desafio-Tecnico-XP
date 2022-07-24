@@ -5,7 +5,8 @@ const createAccountTransactions = (sequelize, DataTypes) => {
     accountId: DataTypes.INTEGER,
     value: DataTypes.DECIMAL(10,2),
     type: DataTypes.STRING,    
-  }, {
+  },
+  {
     tableName: 'accountTransactions',
     underscored: true,
     timestamps: true,

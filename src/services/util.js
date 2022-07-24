@@ -1,6 +1,6 @@
+const Joi = require('joi');
 const db = require('../database/models');
-const UnauthorizedError = require('../error/UnauthorizedError');
-const NotFoundError = require('../error/NotFoundError');
+const err = require('../error');
 
 const util = {
     formatValue: (value) => {
@@ -14,14 +14,14 @@ const util = {
         const number = Number(value);
         
         if (isNaN(number) || number <= 0) {
-          throw new UnauthorizedError('Valor inválido!');
+          throw new err.UnauthorizedError('Valor inválido!');
         }
     },
     
     verifyStok: async (id) => { // verifica se existe a ação pelo código da ação
         const stok = await db.Stock.findByPk(id);
         if (!stok.dataValues) {
-          throw new NotFoundError('Código da ação inválido!'); 
+          throw new err.NotFoundError('Código da ação inválido!'); 
         }
         const { dataValues } = stok;
         return dataValues;
@@ -36,16 +36,17 @@ const util = {
         const result = await db.AccountTransactions.create({ accountId, value, type });
         return result;
     },
-    updatePortfolio: async (data) => {
-        // user_id cod_ativo, valor_compra, registro_id
-        const result = await db.StockPortfolio.create(data);
-        return result;
+
+    updatePortfolio: async (data) => { // atualiza carteira (ações) do cliente
+      const result = await db.StockPortfolio.create(data);
+      return result;
     },
+
     updateStocks: async (qtdeOferta, id) => { // atualiza qtde de ações na corretora
         await db.Stock.update({ qtdeOferta }, { where: { id } });
         return true;
     },
-    formatBRL: (value) => {
+    formatBRL: (value) => { // atualiza para moeda brasileira
       const formatter = new Intl.NumberFormat('pt-BR', {
         style: 'currency',
         currency: 'BRL',
@@ -53,6 +54,17 @@ const util = {
       const formatted = formatter.format(value);
       return formatted;
     },
+
+    validateLogin: (data) => { // confere os req. mínimos para abrir conta
+      const schema = Joi.object({
+          email: Joi.string().email().required(),
+          password: Joi.string().required().min(6),       
+      });
+      const { error } = schema.validate(data);
+      if (error) { 
+          throw new err.ValidationError(error.message);
+      }
+  },
 };
 
 module.exports = util;

@@ -36,8 +36,8 @@ const investmentsController = {
     getWalllet: async (req, res) => {
       const { authorization } = req.headers;
       const { id } = req.params;
-      const idT = tokenService.getUserId(authorization);
-      const wallet = await investmentsService.getWallet(idT, id);
+      const idT = tokenService.getUserId(authorization, id);
+      const wallet = await investmentsService.getWallet(idT);
       res.status(200).json(wallet);
     },
 };

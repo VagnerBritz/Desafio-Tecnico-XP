@@ -1,8 +1,7 @@
 const db = require('../database/models');
 const util = require('./util');
 const userServices = require('./userService');
-const NotFoundError = require('../error/NotFoundError');
-const UnauthorizedError = require('../error/UnauthorizedError');
+const err = require('../error');
 
 const investmentsService = {
     
@@ -14,7 +13,7 @@ const investmentsService = {
   getByName: async (codAtivo) => {
       const stok = await db.Stock.findOne({ where: { codAtivo } });
       if (!stok) {
-        throw new NotFoundError('Ação não encontrada. Pesquise nesse formato: "PETR4"');
+        throw new err.NotFoundError('Ação não encontrada. Pesquise nesse formato: "PETR4"');
       }
 
       return stok;
@@ -23,7 +22,7 @@ const investmentsService = {
     getById: async (id) => {
       const stok = await db.Stock.findByPk(id);
       if (!stok) {
-        throw new NotFoundError('Código do ativo é inválido!');
+        throw new err.NotFoundError('Código do ativo é inválido!');
       }
       return stok;
     },
@@ -37,7 +36,7 @@ const investmentsService = {
       valorUnit = Number(valorUnit);
       
       if (qtdeAtivo > qtdeOferta) {
-        throw new UnauthorizedError(
+        throw new err.UnauthorizedError(
           `Quantidade desejada é inferior a disponível na corretora. Disponível: ${qtdeOferta}`,
           );
       }
@@ -46,7 +45,7 @@ const investmentsService = {
       
       const { Saldo } = await userServices.getBalance(codCliente); // consulta o saldo
       if (Saldo < total) {
-        throw new UnauthorizedError('Saldo insuficiente para completar a transação!');
+        throw new err.UnauthorizedError('Saldo insuficiente para completar a transação!');
       }
       
       const newBalance = Saldo - total;
@@ -84,23 +83,22 @@ const investmentsService = {
       });
 
       if (qtdeUser < qtdeAtivo) {
-        throw new UnauthorizedError('Você não possui este ativo ou essa quantidade em carteira!');
+        throw new err.UnauthorizedError('Você não possui este ativo ou essa quantidade em carteira!');
       }
 
       let { valorUnit, qtdeOferta, nome } = await util.verifyStok(codAtivo); // quantidade existente na corretora
   
-      valorUnit = Number(valorUnit); // descobrir pq o bd não retorna decimal,
+      valorUnit = Number(valorUnit); 
       const { Saldo } = await userServices.getBalance(codCliente); // pegando o saldo do cliente
       
       const newOffer = qtdeOferta + qtdeAtivo; // nova qtde de ações na corretora.
 
-      // const newQtdeUser = qtdeUser - qtdeAtivo; // nova quantidade de ações do cliente
       const totalOp = Number((qtdeAtivo * valorUnit).toFixed(2)); // valor total da transação;
       const newBalance = totalOp + Saldo; // novo saldo em conta, considerando o valor da venda 
 
       const registry = await util.registryOp(
-        { accountId: codCliente, value: totalOp, type: 'SELL' },
-        ); // registra na tabela a operação 
+        { accountId: codCliente, value: totalOp, type: 'SELL' }, // registra na tabela a operação 
+        ); 
 
       const { id, value } = registry.dataValues;
 
@@ -131,7 +129,7 @@ const investmentsService = {
     getWallet: async (id) => {
     const wallet = await db.StockPortfolio.findAll({ where: { userId: id } });
     if (!wallet.length) {
-      throw new NotFoundError('Você ainda não têm ações!');
+      throw new err.NotFoundError('Você ainda não têm ações!');
     }
       return wallet;
     },

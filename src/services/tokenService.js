@@ -1,6 +1,6 @@
 require('dotenv/config');
 const jwt = require('jsonwebtoken');
-const UnauthorizedError = require('../error/UnauthorizedError');
+const err = require('../error');
 
 const tokenService = {
 
@@ -17,15 +17,15 @@ const tokenService = {
         try {
             const { data } = jwt.verify(token, process.env.JWT_SECRET);
             return data;            
-        } catch (err) {
-          throw new UnauthorizedError('Token inválido ou não enviado!');            
+        } catch (error) {
+          throw new err.UnauthorizedError('Token inválido ou não enviado!');            
         }
     },
 
     getUserId: (token, codCliente) => {
         const data = tokenService.validate(token);
         if (data.id !== Number(codCliente)) {
-          throw new UnauthorizedError('Você não tem permissão para essa conta');
+          throw new err.UnauthorizedError('Você não tem permissão para essa conta');
         }
         return data.id;
     },

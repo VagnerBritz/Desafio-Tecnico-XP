@@ -3,7 +3,7 @@
 Boas vindas ao projeto API XP, abaixo estão compilados informações sobre o projeto, tomada de decisões, tecnologias e algumas considerações pessoais sobre o projeto.
 
   ## Sobre o projeto
-  Este projeto simula algumas operções básicas de conta corrente como saque, depósito e consulta de saldo. E algumas operações básicas de corretora de investimentos como consulta a ações e compra e venda ações.
+  Este projeto simula algumas operações básicas de conta corrente como saque, depósito e consulta de saldo. E algumas operações básicas de corretora de investimentos como consulta a ações e compra e venda ações.
 
 ## Orientações
   <details>
