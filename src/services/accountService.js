@@ -1,13 +1,13 @@
 const userServices = require('./userService');
 const util = require('./util');
-const UnauthorizedError = require('../error/UnauthorizedError');
+const err = require('../error');
 
 const accountService = {
 
-    deposit: async (CodCliente, Valor) => { // ver se é necessário envolver com tryCatch    
+    deposit: async (CodCliente, Valor) => {     
         const valor = util.formatValue(Valor);
 
-        util.isvalid(valor); // valida se o valor não é nulo ou < = 0;        
+        util.isvalid(valor);      
         const balance = await userServices.getBalance(CodCliente); // consulta se a conta existe e o saldo.
         const newBalance = balance.Saldo + Number(valor); // calcula o novo saldo        
         
@@ -19,12 +19,11 @@ const accountService = {
 
     withdraw: async (CodCliente, Valor) => {
         const valor = util.formatValue(Valor);
-        // await accountService.withdraw(CodCliente, Valor);
         util.isvalid(valor);
         const balance = await userServices.getBalance(CodCliente); // consulta se a conta existe e o saldo.
         const newBalance = balance.Saldo - Number(valor);// calcula o novo saldo
         if (newBalance < 0) {
-          throw new UnauthorizedError('Saldo insuficiente!');
+          throw new err.UnauthorizedError('Saldo insuficiente!');
         }
 
         await util.registryOp({ accountId: CodCliente, value: valor, type: 'WITHDRAW' });

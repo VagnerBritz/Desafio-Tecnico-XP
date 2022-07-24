@@ -11,7 +11,7 @@ router.get('/cod/:id', investmentsController.getById);
 
 // Rotas privadas
 router.use(authControllers.validateToken);
-router.get('/carteira', investmentsController.getWalllet);
+router.get('/carteira/:id', investmentsController.getWalllet);
 router.post('/comprar', investmentsController.buyStoks);
 router.post('/vender', investmentsController.sellStock);
 

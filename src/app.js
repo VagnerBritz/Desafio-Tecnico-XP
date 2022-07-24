@@ -12,14 +12,14 @@ app.use(bodyParser.json());
 app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerOutput));
 
 app.use('/conta', usersRouter);
-app.use('/investimentos', investmentsRouter);
+app.use('/ativos', investmentsRouter);
 
 app.all('*', (req, res) => res.status(404).json({ message: `Rota '${req.path}' não existe!` }));
 
 app.use((err, _req, res, _next) => {
     const { name, message } = err;
     switch (name) {
-        case 'UnauthorizedError':
+        case 'UnauthorizedError': case 'ValidationError':
             res.status(401).json({ message });            
             break; 
         case 'NotFoundError':

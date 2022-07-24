@@ -11,7 +11,7 @@
   "tags": [
     {
       "name": "Conta",
-      "description": "Endpoints para gerenciamento de conta."
+      "description": "Endpoints para gerenciamento de conta corrente."
     },
     {
       "name": "Investimentos",
@@ -43,6 +43,7 @@
           "Conta"
         ],
         "description": "Endpoint para logar um usuário em específico.",
+        "summary": "Login de usuário",
         "parameters": [
           {
             "name":"body",
@@ -88,15 +89,12 @@
               "type": "object",
               "properties": {
                 "CodCliente": {
-                  "required":true,
                   "type":"integer",
                   "example": 1
                 },
-                "Valor": {  
-                  
-                  "required":true,
-                  "type":"decimal",
-                  "example": 100
+                "Valor": {
+                  "type":"bool",
+                  "example": "100.00"
                 }
               }
             }
@@ -113,6 +111,7 @@
       "post": {
         "tags":["Conta"],
         "description": "Endpoint para sacar valor",
+        "summary":"Saque em conta corrente",
         "parameters": [
           {
             "name": "authorization",
@@ -170,7 +169,7 @@
         }
       }
     },
-    "/conta/encerrar/": {
+    "/conta/encerrar": {
       "delete": {
         "tags":["Conta"],
         "summary": "Desativa a conta corrente",
@@ -203,7 +202,41 @@
         }
       }
     },
-    "/investimentos/": {
+    "/conta/criar": {
+      "post": {
+        "tags":["Conta"],
+        "summary": "Cria uma nova conta",
+        "description": "",
+        
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "email": {
+                  "required":true,
+                  "type":"string",
+                  "example": "alguem@alguem.com.br"
+                },
+                "password": {
+                  "required":true,
+                  "type":"string",
+                  "example": "confia#sqn"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          }
+        }
+      }
+    },
+    "/ativos": {
       "get": {
         "tags": [
           "Investimentos"
@@ -218,7 +251,7 @@
         }
       }
     },
-    "/investimentos/search": {
+    "/ativos/search": {
       "get": {
         "tags": [
           "Investimentos"
@@ -240,12 +273,12 @@
         }
       }
     },
-    "/investimentos/cod/{id}": {
+    "/ativos/cod/{id}": {
       "get": {
         "tags": [
           "Investimentos"
         ],
-          "description": "Endpoint para consultar um ativo pelo codAtivo ( de nº 1 ao 88).",
+        "description": "Endpoint para consultar um ativo pelo codAtivo ( de nº 1 ao 88).",
         "summary": "Pesquisa pelo cod_ativo",
         "parameters": [
           {
@@ -254,7 +287,6 @@
             "required": true,
             "type": "string",
             "example": "37"
-
           }
         ],
         "responses": {
@@ -264,7 +296,7 @@
         }
       }
     },
-    "/investimentos/carteira": {
+    "/ativos/carteira/{id}": {
       "get": {
         "tags": [
           "Investimentos"
@@ -276,6 +308,13 @@
             "name": "authorization",
             "in": "header",
             "type": "string"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "example": "37"
           }
         ],
         "responses": {
@@ -285,12 +324,13 @@
         }
       }
     },
-    "/investimentos/comprar": {
+    "/ativos/comprar": {
       "post": {
         "tags": [
           "Investimentos"
         ],
         "description": "Endpoint para comprar um ativo pelo codAtivo",
+        "summary":"Compra ações",
         "parameters": [
           {
             "name": "authorization",
@@ -326,12 +366,13 @@
         }
       }
     },
-    "/investimentos/vender": {
+    "/ativos/vender": {
       "post": {
         "tags": [
           "Investimentos"
         ],
         "description": "Endpoint para vender um ativo pelo codAtivo",
+        "summary":"Vende ações",
         "parameters": [
           {
             "name": "authorization",
