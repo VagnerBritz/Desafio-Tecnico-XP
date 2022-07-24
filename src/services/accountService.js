@@ -14,12 +14,12 @@ const accountService = {
         await util.registryOp({ accountId: CodCliente, value: Valor, type: 'DEPOSIT' }); // cria o log na tabela
         await util.updateBalance(CodCliente, newBalance);
 
-        return true;
-    }, 
+        return { valor: util.formatBRL(Valor) };
+    },  
 
     withdraw: async (CodCliente, Valor) => {
         const valor = util.formatValue(Valor);
-
+        // await accountService.withdraw(CodCliente, Valor);
         util.isvalid(valor);
         const balance = await userServices.getBalance(CodCliente); // consulta se a conta existe e o saldo.
         const newBalance = balance.Saldo - Number(valor);// calcula o novo saldo
@@ -29,7 +29,7 @@ const accountService = {
 
         await util.registryOp({ accountId: CodCliente, value: valor, type: 'WITHDRAW' });
         await util.updateBalance(CodCliente, newBalance);
-        return true;
+        return { valor: util.formatBRL(Valor) };
     },
 };
 

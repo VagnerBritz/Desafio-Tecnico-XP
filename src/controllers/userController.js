@@ -4,9 +4,10 @@ const tokenService = require('../services/tokenService');
 const userControllers = {
     balance: async (req, res) => {
         const { authorization } = req.headers;
-        const id = tokenService.getUserId(authorization);
+        const { id } = req.params;
+        const idT = tokenService.getUserId(authorization, id);
 
-        const balance = await userServices.getBalance(id);
+        const balance = await userServices.getBalance(idT);
         return res.status(200).json(balance);
     }, 
     getStocks: async (req, res) => {
@@ -19,9 +20,10 @@ const userControllers = {
     },
     deleteAccount: async (req, res) => {
       const { authorization } = req.headers;
-      const id = tokenService.getUserId(authorization);
-      await userServices.deleteAccount(id);
-      return res.status(202).end();
+      const { CodCliente } = req.body;
+      const idT = tokenService.getUserId(authorization, CodCliente);
+      await userServices.deleteAccount(idT);
+      return res.status(204).end();
     },
 };
 module.exports = userControllers;

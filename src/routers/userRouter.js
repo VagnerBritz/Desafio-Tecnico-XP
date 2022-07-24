@@ -11,6 +11,6 @@ router.post('/criar', userControllers.createAccount);
 router.use(authControllers.validateToken);
 router.post('/saque', accountController.withdraw);
 router.get('/:id', userControllers.balance);
-router.delete('/', userControllers.deleteAccount);
+router.delete('/encerrar/', userControllers.deleteAccount);
 
 module.exports = router;
